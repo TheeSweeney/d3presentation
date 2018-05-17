@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>filterMap</title>
+	<title>Learning D3</title>
 	<link rel="stylesheet" href="main.css">
 	<script  type="text/javascript" src="d3.min.js"></script>
 </head>
@@ -10,9 +10,10 @@
 <!--Place all DOM elements here -->
 <script>
 var data = [132,71,337,93,78,43,20,16,30,8,17,21];
-var dataGreaterThan50;
-// console.log("dataGreaterThan50: ", dataGreaterThan50);
-
+var dataGreaterThan50 = data.filter(function(entry){
+	return entry > 50;
+});
+//console.log("dataGreaterThan50: ", dataGreaterThan50);
 
 var donuts = [
 	{key: "Glazed",		value: 132},
@@ -28,14 +29,20 @@ var donuts = [
 	{key: "Fritter", 	value: 17},
 	{key: "Bearclaw", 	value: 21}
 ];
-
+var donutsGreaterThan50 = donuts.filter(function(entry){
+	return entry.value > 50;
+});
 //console.log("donutsGreaterThan50: ", donutsGreaterThan50);
 
-var reformattedDonuts;
-
-// reformattedDonuts.forEach(function(entry){
-// 	console.log(entry);
-// });
+var reformattedDonuts = donuts.map(function(entry){
+	return {
+		donut: entry.key,
+		qty: entry.value
+	};
+});
+reformattedDonuts.forEach(function(entry){
+	console.log(entry);
+});
 </script>	
 </body>
 </html>
