@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>scales</title>
+	<title>interactivity</title>
 	<link rel="stylesheet" href="main.css">
 	<script  type="text/javascript" src="d3.min.js"></script>
 </head>
@@ -38,6 +38,12 @@ var linearColorScale = d3.scale.linear()
 var chart = svg.append('g')
 				.classed('display', true)
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var controls = d3.select('body')
+				.append('div')
+				.attr('id', 'controls')
+var sort_btn = controls.append('button')
+						.html('Sort data: ascending')
+						.attr('state', 0)
 function plot(params){
 	this.selectAll(".bar")
 	.data(params.data)
@@ -59,6 +65,36 @@ function plot(params){
 			return linearColorScale(i)
 		})
 }
+
+sort_btn.on('click', function(){
+	var self = d3.select(this);
+	var ascending = function(a,b){
+		return a - b;
+	}
+	var descending = function(a,b){
+		return b - a;
+	}
+	var state = +self.attr('state');	
+	var txt = 'Sort data: '
+	if(state === 0){
+		data.sort(ascending);
+		state = 1;
+		txt += 'descending'
+	}else{
+		data.sort(descending);
+		state = 0;
+		txt += 'ascending'
+	}
+	console.log(data)
+
+	self.attr('state', state);
+	self.html(txt);
+
+	plot.call(chart, {
+		data:data
+	})
+})
+
 plot.call(chart, {
 	data:data
 })
