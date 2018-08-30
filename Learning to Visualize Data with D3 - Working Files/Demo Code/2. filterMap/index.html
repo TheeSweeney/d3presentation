@@ -10,7 +10,9 @@
 <!--Place all DOM elements here -->
 <script>
 var data = [132,71,337,93,78,43,20,16,30,8,17,21];
-var dataGreaterThan50
+// var dataGreaterThan50 = data.filter(function(entry){
+// 	return entry > 50;
+// })
 // console.log("dataGreaterThan50: ", dataGreaterThan50);
 
 
@@ -29,13 +31,17 @@ var donuts = [
 	{key: "Bearclaw", 	value: 21}
 ];
 
-//console.log("donutsGreaterThan50: ", donutsGreaterThan50);
 
-var reformattedDonuts;
+var reformattedDonuts = donuts.map(function(entry){
+	return {
+		donut: entry.key,
+		qty: entry.value
+	}
+})
 
-// reformattedDonuts.forEach(function(entry){
-// 	console.log(entry);
-// });
+reformattedDonuts.forEach(function(entry){
+	console.log(entry);
+});
 </script>	
 </body>
 </html>

@@ -9,14 +9,18 @@
 <body>
 <!--Place all DOM elements here -->
 <script>
-var w = 800;
-var h = 450;
+var w = 1200;
+var h = 750;
 var data = [132,71,337,93,78,43,20,16,30,8,17,21];
-
 var svg = d3.select("body").append("svg")
 			.attr("id", "chart")
 			.attr("width", w)
 			.attr("height", h);
+
+// var linearColorScale = d3.scale.linear()
+// 						.domain([0, data.length])
+// 						.range(["#1e90ff", "#092b4c"])
+
 svg.selectAll(".bar")
     .data(data)
     .enter()
